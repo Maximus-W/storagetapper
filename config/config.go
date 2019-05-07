@@ -156,6 +156,9 @@ type TableParams struct {
 	Pipe       PipeConfig
 	Schedule   ScheduleConfig
 	NoSnapshot bool `yaml:"no_snapshot"`
+
+	// Procude just insert event on update
+	NoDeleteOnUpdate bool `yaml:"no_delete_on_update"`
 }
 
 // RowFilter has the condition, column name & values on which filter will be applied
