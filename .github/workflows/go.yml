@@ -7,8 +7,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+    - name: Check out code
+      uses: actions/checkout@v1
+
+    - name: Debug
+      run: |
+        ls -la
+        pwd
+        ls -la ..
+        pwd
+        ls -la ../..
+
     - name: Install dependencies
       run: ./scripts/install_deps.sh
+      shell: bash -c {0}
 
     - name: Run tests
       run: make test
