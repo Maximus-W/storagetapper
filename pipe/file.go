@@ -778,7 +778,6 @@ func (p *fileConsumer) waitForNextFile(watcher *fsnotify.Watcher) (bool, error) 
 	for {
 		select {
 		case event := <-watcher.Events:
-			log.Debugf("event: %v", event)
 			if event.Op&fsnotify.Create == fsnotify.Create {
 				log.Debugf("modified file: %v", event.Name)
 				return false, nil
