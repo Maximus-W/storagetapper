@@ -4,8 +4,8 @@ language: go
 go:
   - 1.12.x
 install:
-  - DOCKER_BUILD=1 scripts/install_deps.sh
-  - scripts/prepare_test_env.sh
+  - DOCKER_BUILD=1 /bin/sh scripts/install_deps.sh
+  - /bin/sh scripts/prepare_test_env.sh
 script: |
   sed -i 's/level: debug/level: info/g' config/development.yaml
   docker run --cidfile=/tmp/s3server.cid -d -p 8000:8000 scality/s3server
