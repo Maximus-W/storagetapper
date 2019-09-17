@@ -2,8 +2,8 @@
 
 set -ex
 
-chown -R mysql:mysql /var/lib/mysql /var/run/mysqld
-/usr/bin/mysqld_safe &
+/usr/share/mysql-8.0/mysql-systemd-start pre
+/usr/bin/mysqld_safe --skip-syslog &
 while ! /usr/bin/mysqladmin ping; do sleep 1; done
 /etc/init.d/postgresql start
 /etc/init.d/clickhouse-server start
