@@ -16,8 +16,8 @@ sudo tar -xzf go$GOVERSION.linux-amd64.tar.gz -C /usr/local
 
 sudo /usr/bin/mysqladmin shutdown || true
 echo "[mysqld]\nserver-id=1\nbinlog-format=ROW\ngtid_mode=ON\nenforce-gtid-consistency\nlog_bin=/var/log/mysql/mysql-bin.log\nlog_slave_updates=1\ninnodb_flush_log_at_trx_commit=0\ninnodb_flush_log_at_timeout=30"|sudo tee -a /etc/mysql/my.cnf
-/usr/share/mysql-8.0/mysql-systemd-start pre
-/usr/bin/mysqld_safe --skip-syslog &
+sudo /usr/share/mysql-8.0/mysql-systemd-start pre
+sudo /usr/bin/mysqld_safe --skip-syslog &
 while ! /usr/bin/mysqladmin ping; do sleep 1; done
 sudo mysql -e "DROP USER IF EXISTS 'storagetapper';CREATE USER 'storagetapper' IDENTIFIED BY 'storagetapper';GRANT ALL ON *.* TO 'storagetapper'@'%'"
 if [ -n "$DOCKER_BUILD" ]; then

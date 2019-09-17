@@ -2,13 +2,13 @@
 
 set -ex
 
-/usr/share/mysql-8.0/mysql-systemd-start pre
-/usr/bin/mysqld_safe --skip-syslog &
+sudo /usr/share/mysql-8.0/mysql-systemd-start pre
+sudo /usr/bin/mysqld_safe --skip-syslog &
 while ! /usr/bin/mysqladmin ping; do sleep 1; done
 /etc/init.d/postgresql start
 /etc/init.d/clickhouse-server start
 
-/bin/sh scripts/start_kafka.sh
+sudo -H -u kafka /bin/sh scripts/start_kafka.sh
 
 # Now startup Hadoop
 service ssh start

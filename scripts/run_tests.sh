@@ -3,7 +3,7 @@
 export STORAGETAPPER_CONFIG_DIR=$(pwd)/config
 export STORAGETAPPER_ENVIRONMENT=development
 
-TIMEOUT=600s
+TIMEOUT=800s
 
 export GOTRACEBACK="crash" #produce core file on panic
 
